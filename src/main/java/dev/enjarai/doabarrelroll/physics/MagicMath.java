@@ -7,7 +7,7 @@ public class MagicMath {
         return new Vector3d(); // TODO
     }
 
-    public static Vector3d calculateNewVelocity(Vector3d forceVector) {
+    public static Vector3d calculateNewVelocity(Vector3d forceVector, Vector3d currentVelocity) {
         return new Vector3d(); // TODO
     }
 }

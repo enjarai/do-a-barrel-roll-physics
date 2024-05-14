@@ -46,14 +46,17 @@ public class DoABarrelRollPhysics implements ModInitializer {
 
 		var velocity = new Vector3d(entity.getVelocity().x, entity.getVelocity().y, entity.getVelocity().z);
 		// Inverted matrix??? I think.
-		var relativeVelocity = velocity.mulDirection(playerRotationMatrix.invert(new Matrix4d()));
+		var relativeVelocity = velocity.mulDirection(playerRotationMatrix.invert(new Matrix4d()), new Vector3d());
 
 		var forward = new Vector2d(1, 0);
 		var alpha = new Vector2d(relativeVelocity.x, relativeVelocity.z).angle(forward);
 		var beta = new Vector2d(relativeVelocity.x, relativeVelocity.y).angle(forward);
 
 		var relativeForceVector = MagicMath.calculateRelativeForceVector(alpha, beta, velocity.length());
+		var absoluteForceVector = relativeForceVector.mulDirection(playerRotationMatrix);
 
-		return original; // TODO
+		var newVelocity = MagicMath.calculateNewVelocity(absoluteForceVector, velocity);
+
+		return new Vec3d(newVelocity.x, newVelocity.y, newVelocity.z);
 	}
 }
