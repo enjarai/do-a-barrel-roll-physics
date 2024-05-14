@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "dev.enjarai.doabarrelroll.physics.mixin",
+	"compatibilityLevel": "JAVA_17",
+	"mixins": [
+      "LivingEntityMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
